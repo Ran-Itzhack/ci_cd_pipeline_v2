@@ -8,8 +8,14 @@ variable "sg_id" {
   description = "The ID of the security group from the SG module"
 }
 
-# 1. Register the public key with AWS
+# # 1. Register the public key with AWS
+# resource "aws_key_pair" "deployer" {
+#   key_name   = "deployer-key"
+#   public_key = file("~/.ssh/cicd_terraform_github_action.pub")
+# }
+
 resource "aws_key_pair" "deployer" {
   key_name   = "deployer-key"
-  public_key = file("~/.ssh/cicd_terraform_github_action.pub")
+  # Note: No "~/", just the filename relative to the terraform files
+  public_key = file("${path.module}/cicd_terraform_github_action.pub")
 }
