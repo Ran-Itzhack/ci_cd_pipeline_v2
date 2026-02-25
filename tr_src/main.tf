@@ -66,9 +66,7 @@ output "ec2_instance_id" {
 resource "null_resource" "create_file_localy" {
   provisioner "local-exec" {
 
-    # command = "echo 'Automate AWS Infra Deployment ${join(", ", data.aws_subnets.example.ids)} using Terraform...' > hello.txt"
-    # command = "echo -e 'Automate AWS Infra Deployment\n${join(", ", data.aws_subnets.example.ids)}\nusing Terraform and GitHub Actions Workflows' > hello.txt"
-    command = <<EOT
+     command = <<EOT
                   echo 'AWS User Account Info : ${jsonencode(data.aws_caller_identity.current)}\n' > aws_user_account_info.txt
                 EOT
   }
