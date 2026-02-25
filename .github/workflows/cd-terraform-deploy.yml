@@ -48,12 +48,12 @@ jobs:
         run: ls -R
 
       # Establish an AWS Account
-      # - name: Configure AWS Credentials
-      #   uses: aws-actions/configure-aws-credentials@v4
-      #   with:
-      #     role-to-assume: ${{ secrets.AWS_ROLE }} 
-      #     aws-region: ${{ secrets.AWS_REGION }} 
-      #     # role-session-name: GitHub-OIDC-TERRAFORM
+      - name: Configure AWS Credentials (OIDC for Terraform)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          # role-session-name: GitHub-OIDC-TERRAFORM
       
       ##
       # Setup AWS resources using Terraform 
